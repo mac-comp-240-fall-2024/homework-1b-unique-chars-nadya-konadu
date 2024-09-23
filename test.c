@@ -1,5 +1,7 @@
 /*
- * TODO: Add an appropriate descriptive comment here
+* Name: Nadya K.
+ * This file contains test cases for the hasUniqueChars function.
+ * It verifies correct behavior with various input strings.
  */
 
 #include <stdio.h>    // printf
@@ -7,50 +9,103 @@
 #include <string.h>   // strcpy  to copy a string
 #include <assert.h>
 
-
 // declaration of function from hasUniqueChars.c
 bool hasUniqueChars(char * inputStr);
 
-
 int main() {
+    bool ok;    // holds the result of hasUniqueChars(); used in asserts
+    char string3[128];   // buffer for test strings
 
-  // ------------------------------------------------------------
-  // Examples of declaring string constants
-  /* Example 1 */
-  char string1[] = "A string declared as an array.\n";
+    // Test 1: Duplicates (should return false)
+    strcpy(string3, "This should fail (l and s and i and h)");
+    ok = hasUniqueChars(string3);
+    printf("Test 1: Expecting false for \"%s\"... ", string3);
+    assert(!(ok));
+    printf("Passed!\n");
 
-  /* Example 2 */
-  char *string2 = "A string declared as a pointer.\n";
+    // Test 2: Unique lowercase characters (should return true)
+    strcpy(string3, "abcdefghij");
+    ok = hasUniqueChars(string3);
+    printf("Test 2: Expecting true for \"%s\"... ", string3);
+    assert(ok);
+    printf("Passed!\n");
 
-  /* Example 3 */
-  char string3[128];   // can copy in up to 127 characters
-                       // chose 128 because it is a multiple of 8 bytes
-  strcpy(string3, "A string constant copied in.\n");
+    // Test 3: Uppercase and lowercase unique (should return true)
+    strcpy(string3, "AaBbCcDdEeFfGg");
+    ok = hasUniqueChars(string3);
+    printf("Test 3: Expecting true for \"%s\"... ", string3);
+    assert(ok);
+    printf("Passed!\n");
 
-  // You can uncomment these to see how the strings were initialized above.
-  // Then you can comment these out again once you see that the 
-  // strings were created correctly
-  // printf ("%s", string1);
-  // printf ("%s", string2);
-  // printf ("%s", string3);
+    // Test 4: Unique characters (should return true)
+    strcpy(string3, "xyz");  
+    ok = hasUniqueChars(string3);
+    printf("Test 4: Expecting true for \"%s\"... ", string3);
+    assert(ok);
+    printf("Passed!\n");
 
-  // -------------------------------------------------------------
-  // Thorough and exhaustive tests of hasUniqueChars()  
-  bool ok;    // holds the result of hasUniqueChars(); used in asserts
-  
-  // Test 1: a test case that should return false because characters are duplicated
-  strcpy(string3, "This should fail (l and s and i and h)");
-  ok = hasUniqueChars(string3);
-  assert(!(ok));
-  
-  // Test 2: This should be true and not fail, but won't work until you
-  // complete the hasUniqueChars() function
-  strcpy(string3, "abcdefghij");
-  ok = hasUniqueChars(string3);
-  assert(ok);
-  
-  // TODO: add your tests here
+    // Test 5: Duplicates (should return false)
+    strcpy(string3, "aabbcc");  
+    ok = hasUniqueChars(string3);
+    printf("Test 5: Expecting false for \"%s\"... ", string3);
+    assert(!(ok));
+    printf("Passed!\n");
 
+    // Test 6: More duplicates (should return false)
+    strcpy(string3, "abcdefga");  
+    ok = hasUniqueChars(string3);
+    printf("Test 6: Expecting false for \"%s\"... ", string3);
+    assert(!(ok));
+    printf("Passed!\n");
+
+    // Test 7: String with multiple spaces (should return true)
+    strcpy(string3, "a b c d e");
+    ok = hasUniqueChars(string3);
+    printf("Test 7: Expecting true for \"%s\"... ", string3);
+    assert(ok);
+    printf("Passed!\n");
+
+    // Test 8: Edge case - empty string (should return true)
+    strcpy(string3, "");
+    ok = hasUniqueChars(string3);
+    printf("Test 8: Expecting true for \"%s\"... ", string3);
+    assert(ok);
+    printf("Passed!\n");
+
+    // Test 9: Edge case - string with only one character (should return true)
+    strcpy(string3, "A");
+    ok = hasUniqueChars(string3);
+    printf("Test 9: Expecting true for \"%s\"... ", string3);
+    assert(ok);
+    printf("Passed!\n");
+
+    // Test 10: All printable characters without duplicates (should return true)
+    strcpy(string3, "!\"#$%&'()*+,-./0123456789:;<=>?@ABCDEFGHIJKLMNOPQRSTUVWXYZ[\\]^_`abcdefghijklmnopqrstuvwxyz{|}~");
+    ok = hasUniqueChars(string3);
+    printf("Test 10: Expecting true for all printable characters... ");
+    assert(ok);
+    printf("Passed!\n");
+
+    // Test 11: Non-printing character (should cause exit)
+    strcpy(string3, "Hello\0World");
+    ok = hasUniqueChars(string3);
+    printf("Test 11: Expecting to fail for \"%s\"... ", string3);
+    assert(!(ok)); 
+    printf("Passed!\n");
+
+    // Test 12: String with tab character (should cause exit)
+    strcpy(string3, "abc\tdef");
+    ok = hasUniqueChars(string3);
+    printf("Test 12: Expecting to fail for \"%s\"... ", string3);
+    assert(!(ok)); 
+    printf("Passed!\n");
+
+    // Test 13: String with newline character (should cause exit)
+    strcpy(string3, "abc\ndef");
+    ok = hasUniqueChars(string3);
+    printf("Test 13: Expecting to fail for \"%s\"... ", string3);
+    assert(!(ok)); 
+    printf("Passed!\n");
 
 
   // NOTE: if you add a \n to any tests, this should cause the
