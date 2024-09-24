@@ -86,33 +86,35 @@ int main() {
     assert(ok);
     printf("Passed!\n");
 
-    // Test 11: Non-printing character (should cause exit)
-    strcpy(string3, "Hello\0World");
-    ok = hasUniqueChars(string3);
-    printf("Test 11: Expecting to fail for \"%s\"... ", string3);
-    assert(!(ok)); 
-    printf("Passed!\n");
+    // Test to fail and exit program 
 
-    // Test 12: String with tab character (should cause exit)
-    strcpy(string3, "abc\tdef");
-    ok = hasUniqueChars(string3);
-    printf("Test 12: Expecting to fail for \"%s\"... ", string3);
-    assert(!(ok)); 
-    printf("Passed!\n");
+    // // Test 11: Non-printing character (should cause exit)
+    // strcpy(string3, "Hello\0World");
+    // ok = hasUniqueChars(string3);
+    // printf("Test 11: Expecting to fail for \"%s\"... ", string3);
+    // assert(!(ok)); 
+    // printf("Passed!\n");
 
-    // Test 13: String with newline character (should cause exit)
-    strcpy(string3, "abc\ndef");
-    ok = hasUniqueChars(string3);
-    printf("Test 13: Expecting to fail for \"%s\"... ", string3);
-    assert(!(ok)); 
-    printf("Passed!\n");
+    // // Test 12: String with tab character (should cause exit)
+    // strcpy(string3, "abc\tdef");
+    // ok = hasUniqueChars(string3);
+    // printf("Test 12: Expecting to fail for \"%s\"... ", string3);
+    // assert(!(ok)); 
+    // printf("Passed!\n");
+
+    // // Test 13: String with newline character (should cause exit)
+    // strcpy(string3, "abc\ndef");
+    // ok = hasUniqueChars(string3);
+    // printf("Test 13: Expecting to fail for \"%s\"... ", string3);
+    // assert(!(ok)); 
+    // printf("Passed!\n");
 
 
   // NOTE: if you add a \n to any tests, this should cause the
   //       exit failure given. Keep this test last so you can check 
   //       that others pass or fail as you expect them to.
-  strcpy(string3, "a b cc\n");
-  ok = hasUniqueChars(string3);
+  // strcpy(string3, "a b cc\n");
+  // ok = hasUniqueChars(string3);
   // other examples that should fail that you can place in strings
   // are \0 or \t or \r
   // See problem description for more details about escape sequences

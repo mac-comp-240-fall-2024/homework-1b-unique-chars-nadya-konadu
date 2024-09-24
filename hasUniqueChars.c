@@ -74,29 +74,29 @@ bool hasUniqueChars(char *inputStr) {
 
   char nextChar; // next character in string to check
 
-  unsigned long bitMask = 1; // bit mask for setting bits
+  unsigned long charTracker = 1; 
 
   for (i = 0; i < strlen(inputStr); i++) {
     nextChar = inputStr[i];
 
     if (nextChar >= 'A' && nextChar <= 'Z') {
-      int bit_position = nextChar - 'A';
-      if (checkBitsA_z & (bitMask << bit_position)) {
-        return false; // duplicate found
+      int bit_position = nextChar - 'A'; // 0-25 for A-Z
+      if (checkBitsA_z & (charTracker << bit_position)) {
+        return false; 
       }
-      checkBitsA_z |= (bitMask << bit_position); // set the bit
+      checkBitsA_z |= (charTracker << bit_position); // set the bit
     } else if (nextChar >= 'a' && nextChar <= 'z') {
       int bit_position = nextChar - 'a' + 26; // 26-51 for a-z
-      if (checkBitsA_z & (bitMask << bit_position)) {
-        return false; // duplicate found
+      if (checkBitsA_z & (charTracker << bit_position)) {
+        return false; 
       }
-      checkBitsA_z |= (bitMask << bit_position); // set the bit
+      checkBitsA_z |= (charTracker << bit_position); // set the bit
     } else if (nextChar >= '!' && nextChar <= '@') {
-      int bit_position = nextChar - '!'; // 0-32 for special characters
-      if (checkBitsexcl_amp & (bitMask << bit_position)) {
-        return false; // duplicate found
+      int bit_position = nextChar - '!'; // 0-31 for special characters
+      if (checkBitsexcl_amp & (charTracker << bit_position)) { //
+        return false; 
       }
-      checkBitsexcl_amp |= (bitMask << bit_position); // set the bit
+      checkBitsexcl_amp |= (charTracker << bit_position); // set the bit
     }
   }
 
